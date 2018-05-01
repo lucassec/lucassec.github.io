@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Image on Jane - A super concise theme for Hugo</title>
-    <link>http://lucassec.github.io/tags/image/</link>
-    <description>Recent content in Image on Jane - A super concise theme for Hugo</description>
+    <title>Image on Lucas - An InfoSec Lover</title>
+    <link>https://lucassec.github.io/tags/image/</link>
+    <description>Recent content in Image on Lucas - An InfoSec Lover</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <copyright>Lucas Wilson</copyright>
     <lastBuildDate>Sat, 03 Mar 2018 16:01:23 +0800</lastBuildDate>
     
-	<atom:link href="http://lucassec.github.io/tags/image/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lucassec.github.io/tags/image/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Image Preview</title>
-      <link>http://lucassec.github.io/post/image-preview/</link>
+      <link>https://lucassec.github.io/post/image-preview/</link>
       <pubDate>Sat, 03 Mar 2018 16:01:23 +0800</pubDate>
       
-      <guid>http://lucassec.github.io/post/image-preview/</guid>
+      <guid>https://lucassec.github.io/post/image-preview/</guid>
       <description> Normal Image This is an image in static/image folder.
 1  ![This is an image in `static/image` folder.](/image/example.jpg)   figure image with title 1  {{&amp;lt; figure src=&amp;#34;/image/example.jpg&amp;#34; title=&amp;#34;figure image with title&amp;#34; &amp;gt;}}     figure image with title   figure image with caption 1  {{&amp;lt; figure src=&amp;#34;/image/example.jpg&amp;#34; caption=&amp;#34;figure image with caption figure image with caption figure image with caption figure image with caption figure image with caption&amp;#34; &amp;gt;}}      figure image with caption figure image with caption figure image with caption figure image with caption figure image with caption   </description>
     </item>

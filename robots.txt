@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://lucassec.github.io/sitemap.xml
+Sitemap: https://lucassec.github.io/sitemap.xml
