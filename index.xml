@@ -42,9 +42,7 @@
       
       <guid>http://localhost:1313/post/set-up-hugo-with-github-pages/</guid>
       
-        <description>
-
-&lt;p&gt;今天5月1号，是个特别的日子。首先祝愿广大劳动者劳必有获得。怀着一颗冷静的心，开始找回去年这个时候的自己，那时刚接触Github Pages,觉着是个发布博客的不可多得的形式。博主为了能长期养成写博客的习惯还专门布置了一台虚拟机。Ubuntu18.04&amp;hellip;
+        <description>&lt;p&gt;今天5月1号，是个特别的日子。首先祝愿广大劳动者劳必有获得。怀着一颗冷静的心，开始找回去年这个时候的自己，那时刚接触Github Pages,觉着是个发布博客的不可多得的形式。博主为了能长期养成写博客的习惯还专门布置了一台虚拟机。Ubuntu18.04&amp;hellip;
 &lt;/p&gt;
 
 &lt;h2 id=&#34;hugo安装&#34;&gt;Hugo安装&lt;/h2&gt;
@@ -195,8 +193,7 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;h2 id=&#34;写在最后的话&#34;&gt;写在最后的话&lt;/h2&gt;
 
-&lt;p&gt;祝大家从此开始美美得写博客，有感而发，不至于空洞无一物。&lt;/p&gt;物。&lt;/p&gt;
-</description>
+&lt;p&gt;祝大家从此开始美美得写博客，有感而发，不至于空洞无一物。&lt;/p&gt;</description>
       
     </item>
     
