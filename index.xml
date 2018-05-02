@@ -7,30 +7,47 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Lucas Wilson</copyright>
-    <lastBuildDate>Sun, 20 Aug 2017 21:38:52 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 May 2018 09:29:57 -0400</lastBuildDate>
     
         <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About</title>
+      <title>You know what We want?!!!</title>
       <link>http://localhost:1313/about/</link>
-      <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
+      <pubDate>Tue, 01 May 2018 09:29:57 -0400</pubDate>
       
       <guid>http://localhost:1313/about/</guid>
       
-        <description>&lt;p&gt;Hugo is a static site engine written in Go.&lt;/p&gt;
+        <description>&lt;ul&gt;
+&lt;li&gt;We are Cheaters…&lt;/li&gt;
 
-&lt;p&gt;It makes use of a variety of open source projects including:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;But we Don’t Cheat Humanity…!&lt;/p&gt;&lt;/li&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;Cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/viper&#34;&gt;Viper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/jWalterWeatherman&#34;&gt;J Walter Weatherman&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cast&#34;&gt;Cast&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We hate Study…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;But we Love Technology…!&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;We Flirt with Flirters…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;But we are true lovers…!&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;World can’t change us…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;But we can change the world…!&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;We don’t have books in hands…&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;But have revolutionary ideas in mind…!&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;We are the rarest common race on earth…!&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Meet us we are the &lt;font color=#CB0000&gt;HACKERS&lt;/font&gt;…!!!&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Learn more and contribute on &lt;a href=&#34;https://github.com/gohugoio&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p align=&#34;right&#34;&gt;./pcbots Lab’s&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/nmap.png&#34; alt=&#34;Who am I&#34; /&gt;&lt;/p&gt;
 </description>
       
     </item>
@@ -42,7 +59,9 @@
       
       <guid>http://localhost:1313/post/set-up-hugo-with-github-pages/</guid>
       
-        <description>&lt;p&gt;今天5月1号，是个特别的日子。首先祝愿广大劳动者劳必有获得。怀着一颗冷静的心，开始找回去年这个时候的自己，那时刚接触Github Pages,觉着是个发布博客的不可多得的形式。博主为了能长期养成写博客的习惯还专门布置了一台虚拟机。Ubuntu18.04&amp;hellip;
+        <description>
+
+&lt;p&gt;今天5月1号，是个特别的日子。首先祝愿广大劳动者劳必有获得。怀着一颗冷静的心，开始找回去年这个时候的自己，那时刚接触Github Pages,觉着是个发布博客的不可多得的形式。博主为了能长期养成写博客的习惯还专门布置了一台虚拟机。Ubuntu18.04&amp;hellip;
 &lt;/p&gt;
 
 &lt;h2 id=&#34;hugo安装&#34;&gt;Hugo安装&lt;/h2&gt;
@@ -193,7 +212,8 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;h2 id=&#34;写在最后的话&#34;&gt;写在最后的话&lt;/h2&gt;
 
-&lt;p&gt;祝大家从此开始美美得写博客，有感而发，不至于空洞无一物。&lt;/p&gt;</description>
+&lt;p&gt;祝大家从此开始美美得写博客，有感而发，不至于空洞无一物。&lt;/p&gt;物。&lt;/p&gt;
+</description>
       
     </item>
     
