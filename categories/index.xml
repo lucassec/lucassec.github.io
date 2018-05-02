@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Lucas - An InfoSec Lover</title>
-    <link>https://lucassec.github.io/categories/</link>
+    <link>https://yourusername.github.io/categories/</link>
     <description>Recent content in Categories on Lucas - An InfoSec Lover</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Lucas Wilson</copyright>
     
-	<atom:link href="https://lucassec.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yourusername.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Development</title>
-      <link>https://lucassec.github.io/categories/development/</link>
+      <link>https://yourusername.github.io/categories/development/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://lucassec.github.io/categories/development/</guid>
+      <guid>https://yourusername.github.io/categories/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docs</title>
-      <link>https://lucassec.github.io/categories/docs/</link>
+      <link>https://yourusername.github.io/categories/docs/</link>
       <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
       
-      <guid>https://lucassec.github.io/categories/docs/</guid>
+      <guid>https://yourusername.github.io/categories/docs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>English</title>
-      <link>https://lucassec.github.io/categories/english/</link>
+      <link>https://yourusername.github.io/categories/english/</link>
       <pubDate>Thu, 31 Aug 2017 15:43:48 +0800</pubDate>
       
-      <guid>https://lucassec.github.io/categories/english/</guid>
+      <guid>https://yourusername.github.io/categories/english/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>https://lucassec.github.io/categories/golang/</link>
+      <link>https://yourusername.github.io/categories/golang/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://lucassec.github.io/categories/golang/</guid>
+      <guid>https://yourusername.github.io/categories/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Index</title>
-      <link>https://lucassec.github.io/categories/index/</link>
+      <link>https://yourusername.github.io/categories/index/</link>
       <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
       
-      <guid>https://lucassec.github.io/categories/index/</guid>
+      <guid>https://yourusername.github.io/categories/index/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Shortcodes</title>
-      <link>https://lucassec.github.io/categories/shortcodes/</link>
+      <link>https://yourusername.github.io/categories/shortcodes/</link>
       <pubDate>Tue, 06 Mar 2018 16:01:23 +0800</pubDate>
       
-      <guid>https://lucassec.github.io/categories/shortcodes/</guid>
+      <guid>https://yourusername.github.io/categories/shortcodes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Syntax Highlighting</title>
-      <link>https://lucassec.github.io/categories/syntax-highlighting/</link>
+      <link>https://yourusername.github.io/categories/syntax-highlighting/</link>
       <pubDate>Tue, 30 Aug 2011 16:01:23 +0800</pubDate>
       
-      <guid>https://lucassec.github.io/categories/syntax-highlighting/</guid>
+      <guid>https://yourusername.github.io/categories/syntax-highlighting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://lucassec.github.io/categories/test/</link>
+      <link>https://yourusername.github.io/categories/test/</link>
       <pubDate>Wed, 30 Aug 2017 15:43:48 +0800</pubDate>
       
-      <guid>https://lucassec.github.io/categories/test/</guid>
+      <guid>https://yourusername.github.io/categories/test/</guid>
       <description></description>
     </item>
     
