@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lucas - An InfoSec Lover</title>
-    <link>http://localhost:1313/</link>
+    <link>https://lucassec.github.io/</link>
     <description>Recent content on Lucas - An InfoSec Lover</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Lucas Wilson</copyright>
     <lastBuildDate>Tue, 01 May 2018 09:29:57 -0400</lastBuildDate>
     
-        <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://lucassec.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://lucassec.github.io/about/</link>
       <pubDate>Tue, 01 May 2018 09:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://lucassec.github.io/about/</guid>
       
         <description>&lt;ul&gt;
 &lt;li&gt;We are Cheaters…&lt;/li&gt;
@@ -47,19 +47,21 @@
 
 &lt;p align=&#34;right&#34;&gt;./pcbots Lab’s&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/nmap.png&#34; alt=&#34;Who am I&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lucassec.github.io/images/nmap.png&#34; alt=&#34;Who am I&#34; /&gt;&lt;/p&gt;
 </description>
       
     </item>
     
     <item>
       <title>将基于hugo的静态博客部署至Github Pages</title>
-      <link>http://localhost:1313/post/set-up-hugo-with-github-pages/</link>
+      <link>https://lucassec.github.io/post/set-up-hugo-with-github-pages/</link>
       <pubDate>Tue, 01 May 2018 09:29:57 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/set-up-hugo-with-github-pages/</guid>
+      <guid>https://lucassec.github.io/post/set-up-hugo-with-github-pages/</guid>
       
-        <description>&lt;p&gt;今天5月1号，是个特别的日子。首先祝愿广大劳动者劳必有获得。怀着一颗冷静的心，开始找回去年这个时候的自己，那时刚接触Github Pages,觉着是个发布博客的不可多得的形式。博主为了能长期养成写博客的习惯还专门布置了一台虚拟机。Ubuntu18.04&amp;hellip;
+        <description>
+
+&lt;p&gt;今天5月1号，是个特别的日子。首先祝愿广大劳动者劳必有获得。怀着一颗冷静的心，开始找回去年这个时候的自己，那时刚接触Github Pages,觉着是个发布博客的不可多得的形式。博主为了能长期养成写博客的习惯还专门布置了一台虚拟机。Ubuntu18.04&amp;hellip;
 &lt;/p&gt;
 
 &lt;h2 id=&#34;hugo安装&#34;&gt;Hugo安装&lt;/h2&gt;
@@ -195,7 +197,7 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;博主这里极力推举github出品的&lt;code&gt;Atom&lt;/code&gt;，用过的都说好，理由都懂的。看图说话吧!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/Screen_Shot_2018-05-02_at_8.58.03_PM.png&#34; alt=&#34;Atom&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lucassec.github.io/images/Screen_Shot_2018-05-02_at_8.58.03_PM.png&#34; alt=&#34;Atom&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;当我们的客户端安装好Atom之后还需要增加一些必要的插件来达到增持效果，至于详细功能，可以参考官方说明或者谷歌百度。&lt;/p&gt;
 
@@ -210,7 +212,8 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;h2 id=&#34;写在最后的话&#34;&gt;写在最后的话&lt;/h2&gt;
 
-&lt;p&gt;祝大家从此开始美美得写博客，有感而发，不至于空洞无一物。&lt;/p&gt;</description>
+&lt;p&gt;祝大家从此开始美美得写博客，有感而发，不至于空洞无一物。&lt;/p&gt;物。&lt;/p&gt;
+</description>
       
     </item>
     
