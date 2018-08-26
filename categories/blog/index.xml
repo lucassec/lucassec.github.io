@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Lucas Wilson</copyright>
-    <lastBuildDate>Sun, 17 Jun 2018 23:03:08 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 26 Aug 2018 02:58:23 -0400</lastBuildDate>
     
 	<atom:link href="https://lucassec.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>树莓派3B多系统实践</title>
+      <link>https://lucassec.github.io/post/muti-opreating-system-on-pi3b/</link>
+      <pubDate>Sun, 26 Aug 2018 02:58:23 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/post/muti-opreating-system-on-pi3b/</guid>
+      <description>&lt;p&gt;相信大家都有一个共识，树莓派的可折腾性带来的乐趣远大于其本身。正应了那句话，麻雀虽小但五脏俱全。在小编这主要给它定义了三种用途，也对应着三个系统，分别是Raspbian、Kali和OpenWRT。Raspbian可用作日常上网、临时便捷服务器、测试用机等。Kali提供了便利的审计软件及很多受欢迎的开源工具，树莓派搭载它可以随时随地对网络进行测试及管理。当然，OpenWRT实现了回到家它就变身一个智能路由器。相信各位都很喜欢。
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>asciinema录制终端会话并通过网页展示</title>
@@ -18,7 +28,8 @@
       <pubDate>Sun, 17 Jun 2018 23:03:08 -0400</pubDate>
       
       <guid>https://lucassec.github.io/post/asciinema-somthing-stuff/</guid>
-      <description>今天又是一个特殊的日子，也不知为何，老是在这样的日子来写东西，首先得祝大家端午节快乐。今天小编要带给大家一个好东西&amp;ndash;asciin</description>
+      <description>&lt;p&gt;今天又是一个特殊的日子，也不知为何，老是在这样的日子来写东西，首先得祝大家端午节快乐。今天小编要带给大家一个好东西&amp;ndash;asciinema，一款传说中能记录终端会话的工具，重点是能够在视频播放的同时进行复制，读到这里，机制的小伙伴们估计已经清楚的知道其实不是真实的视频。小编在很久以前就得知其分享操作之便利性，幸得今日有空，将之与大家共享，录制视屏并在网页中引用。
+&lt;/p&gt;</description>
     </item>
     
     <item>

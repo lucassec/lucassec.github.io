@@ -49,6 +49,15 @@
     </item>
     
     <item>
+      <title>Kali</title>
+      <link>https://lucassec.github.io/tags/kali/</link>
+      <pubDate>Sun, 26 Aug 2018 02:58:23 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/tags/kali/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Markdown</title>
       <link>https://lucassec.github.io/tags/markdown/</link>
       <pubDate>Fri, 11 May 2018 10:45:48 -0400</pubDate>
@@ -63,6 +72,33 @@
       <pubDate>Sun, 17 Jun 2018 23:03:08 -0400</pubDate>
       
       <guid>https://lucassec.github.io/tags/nix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Openwrt</title>
+      <link>https://lucassec.github.io/tags/openwrt/</link>
+      <pubDate>Sun, 26 Aug 2018 02:58:23 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/tags/openwrt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Raspberry</title>
+      <link>https://lucassec.github.io/tags/raspberry/</link>
+      <pubDate>Sun, 26 Aug 2018 02:58:23 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/tags/raspberry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Raspbian</title>
+      <link>https://lucassec.github.io/tags/raspbian/</link>
+      <pubDate>Sun, 26 Aug 2018 02:58:23 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/tags/raspbian/</guid>
       <description></description>
     </item>
     
@@ -90,6 +126,15 @@
       <pubDate>Fri, 11 May 2018 10:45:48 -0400</pubDate>
       
       <guid>https://lucassec.github.io/tags/winly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树莓派</title>
+      <link>https://lucassec.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+      <pubDate>Sun, 26 Aug 2018 02:58:23 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
       <description></description>
     </item>
     

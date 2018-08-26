@@ -53,15 +53,268 @@
     </item>
     
     <item>
+      <title>树莓派3B多系统实践</title>
+      <link>https://lucassec.github.io/post/muti-opreating-system-on-pi3b/</link>
+      <pubDate>Sun, 26 Aug 2018 02:58:23 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/post/muti-opreating-system-on-pi3b/</guid>
+      
+        <description>&lt;p&gt;相信大家都有一个共识，树莓派的可折腾性带来的乐趣远大于其本身。正应了那句话，麻雀虽小但五脏俱全。在小编这主要给它定义了三种用途，也对应着三个系统，分别是Raspbian、Kali和OpenWRT。Raspbian可用作日常上网、临时便捷服务器、测试用机等。Kali提供了便利的审计软件及很多受欢迎的开源工具，树莓派搭载它可以随时随地对网络进行测试及管理。当然，OpenWRT实现了回到家它就变身一个智能路由器。相信各位都很喜欢。
+&lt;/p&gt;
+
+&lt;h2 id=&#34;小编眼里的它&#34;&gt;小编眼里的它&lt;/h2&gt;
+
+&lt;p&gt;我不介意给各位分享小编的树莓派的真容，或者会触发各位一些灵感，小编也很开心了。看图
+&lt;img src=&#34;https://lucassec.github.io/images/raspberry.jpg&#34; alt=&#34;my raspberry&#34; /&gt;
+话说细心的各位不知有没看出一些小细节，注意小编的电源处两根输出线，
+黑色那根是1A电流输出，而白色那根是2A输出，这里的移动硬盘是以前退役的笔记本的硬盘改的，至少需要500mA电流可供其稳定运行，直接插在树莓派上可想运转都成问题，这里的Hub带有独立供电口，而且输出电流为1A既保障了硬盘的供电也支持了无线网卡的稳定供电需求。不出意外这20000毫安的充电宝可连续待命24小时以上。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装多系统&#34;&gt;安装多系统&lt;/h2&gt;
+
+&lt;p&gt;在正式开始之前先看一下小编硬盘的布局，下面就是最终的效果，这里充分利用了它的价值，一方面给树莓派提供系统支持，另一方面可作系统维护盘及数据拷贝盘使用。所以会觉得分区比较多。
+&lt;img src=&#34;https://lucassec.github.io/images/Screenshot_2018-08-26_03-49-35.png&#34; alt=&#34;my raspberry&#34; /&gt;
+Patition 7以前的分区是noobs自己划分的，后面的分区是小编根据需求调整的。Patition 8到Patition 11分别是kali和OpenWRT。Patition 12用作系统UEFI安装盘制作分区，Patition 13用作数据交换的分区，比如日常拷贝数据，Patition 14是Mac OS X 10.13.6安装盘。&lt;/p&gt;
+
+&lt;p&gt;（1）在&lt;a href=&#34;https://www.raspberrypi.org/downloads/noobs/&#34;&gt;https://www.raspberrypi.org/downloads/noobs/&lt;/a&gt;页面选择离线版的NOOBS安装包。&lt;/p&gt;
+
+&lt;p&gt;（2）将移动硬盘转为传统MBR模式并将其格式化为fat32格式。注意是一个分区。&lt;/p&gt;
+
+&lt;p&gt;（3）将离线版NOOBS的zip包解压后复制到移动硬盘的fat32分区的根目录。&lt;/p&gt;
+
+&lt;p&gt;（4）需将树莓派3B设置为能够从usb启动，详情请google。&lt;/p&gt;
+
+&lt;p&gt;（5）给树莓派加电，它会自动执行noobs的初始化脚本，包括对硬盘分区。在逻辑分区里最大的那个root分区就是需要调整的对象。也就是末尾的那个分区。&lt;/p&gt;
+
+&lt;p&gt;（6）在linux下推荐使用gparted工具对其进行进一步的分区操作，先卸载最后一个分区，后缩小它的大小，相应的后面会多出空闲的部分去新建分区。可以参考小编的硬盘结构做相应的调整。&lt;/p&gt;
+
+&lt;p&gt;（7）编辑SETTINGS分区下的&lt;code&gt;installed_os.json&lt;/code&gt;文件，追加两条启动菜单，其他选项可以不变，只需把&lt;code&gt;name&lt;/code&gt;项改成自己的操作系统的名字即可，还有就是系统占用的哪几个分区也要加上。修改后如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;bootable&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;A port of Debian Stretch for the Raspberry Pi (full desktop version)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;folder&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/Raspbian&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;icon&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/Raspbian/Raspbian.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Raspbian&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;partitions&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda6&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda7&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;release_date&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2018-06-27&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;supported_models&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi 2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Zero&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi 3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Compute Module 3&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;bootable&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;A port of Debian Stretch for the Raspberry Pi (full desktop version)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;folder&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/Raspbian&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;icon&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/Raspbian/Raspbian.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Kali&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;partitions&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda9&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;release_date&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2018-06-27&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;supported_models&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi 2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Zero&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi 3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Compute Module 3&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;bootable&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;A port of Debian Stretch for the Raspberry Pi (full desktop version)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;folder&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/Raspbian&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;icon&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/Raspbian/Raspbian.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;OpenWRT&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;partitions&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda10&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda11&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;release_date&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2018-06-27&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;#34;supported_models&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Model&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi 2&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Zero&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi 3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;Pi Compute Module 3&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;（8）将Kali for pi3和OpenWrt的系统解压出image文件，后在linux下进行挂载，使用&lt;code&gt;cp -a src_dir dist_dir&lt;/code&gt;命令将对应分区的内容保持原属性拷贝到移动硬盘的分区。&lt;/p&gt;
+
+&lt;p&gt;（9）在kali的启动分区下编辑加入&lt;code&gt;os_config.json&lt;/code&gt;文件，内容如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;A port of Debian Stretch for the Raspberry Pi (full desktop version)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;flavour&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Kali&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;imagefolder&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/Kali&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;keyboard&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;gb&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;language&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;partitions&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda9&amp;#34;&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;release_date&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2018-06-27&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;videomode&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;（10）修改kali启动分区下文件&lt;code&gt;cmdline.txt&lt;/code&gt;的root分区为实际的位置&lt;code&gt;/dev/sda9&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;dwc_otg.fiq_fix_enable&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ttyAMA0,115200 &lt;span class=&#34;nv&#34;&gt;kgdboc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ttyAMA0,115200 &lt;span class=&#34;nv&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;tty1 &lt;span class=&#34;nv&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/dev/sda9 &lt;span class=&#34;nv&#34;&gt;rootfstype&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ext4 rootwait &lt;span class=&#34;nv&#34;&gt;rootflags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;noload net.ifnames&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;（11）修改kali分区&lt;code&gt;/dev/sda9&lt;/code&gt;下&lt;code&gt;etc/fstab&lt;/code&gt;所对应的启动分区和root分区即可完成kali的初始化配置，至此可选择从Kali菜单启动了。&lt;/p&gt;
+
+&lt;p&gt;（12）在OpenWRT的启动分区下编辑加入&lt;code&gt;os_config.json&lt;/code&gt;文件，内容如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;A port of Debian Stretch for the Raspberry Pi (full desktop version)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;flavour&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Kali&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;imagefolder&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/os/OpenWRT&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;keyboard&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;gb&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;language&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;partitions&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda10&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;/dev/sda11&amp;#34;&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;release_date&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;2018-06-27&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+ &lt;span class=&#34;nt&#34;&gt;&amp;#34;videomode&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;（13）修改OpenWRT启动分区下&lt;code&gt;cmdline.txt&lt;/code&gt;为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;dwc_otg.lpm_enable&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;serial0,115200 &lt;span class=&#34;nv&#34;&gt;kgdboc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;serial0,115200 &lt;span class=&#34;nv&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;tty1 &lt;span class=&#34;nv&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/dev/sda11 &lt;span class=&#34;nv&#34;&gt;rootfstype&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;squashfs,ext4 rootwait&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+
+&lt;p&gt;到此，基本实现了树莓派的多系统安装，文中有些跳跃的地方，但都是经过实践证明过的，需要各位多花些心思折腾，写的不是太细，望见谅。重要的是思路。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>asciinema录制终端会话并通过网页展示</title>
       <link>https://lucassec.github.io/post/asciinema-somthing-stuff/</link>
       <pubDate>Sun, 17 Jun 2018 23:03:08 -0400</pubDate>
       
       <guid>https://lucassec.github.io/post/asciinema-somthing-stuff/</guid>
       
-        <description>
-
-&lt;p&gt;今天又是一个特殊的日子，也不知为何，老是在这样的日子来写东西，首先得祝大家端午节快乐。今天小编要带给大家一个好东西&amp;ndash;asciinema，一款传说中能记录终端会话的工具，重点是能够在视频播放的同时进行复制，读到这里，机制的小伙伴们估计已经清楚的知道其实不是真实的视频。小编在很久以前就得知其分享操作之便利性，幸得今日有空，将之与大家共享，录制视屏并在网页中引用。&lt;/p&gt;
+        <description>&lt;p&gt;今天又是一个特殊的日子，也不知为何，老是在这样的日子来写东西，首先得祝大家端午节快乐。今天小编要带给大家一个好东西&amp;ndash;asciinema，一款传说中能记录终端会话的工具，重点是能够在视频播放的同时进行复制，读到这里，机制的小伙伴们估计已经清楚的知道其实不是真实的视频。小编在很久以前就得知其分享操作之便利性，幸得今日有空，将之与大家共享，录制视屏并在网页中引用。
+&lt;/p&gt;
 
 &lt;h2 id=&#34;官方网站&#34;&gt;官方网站&lt;/h2&gt;
 
@@ -177,8 +430,7 @@ $ wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/as
 &lt;h2 id=&#34;实例演示&#34;&gt;实例演示&lt;/h2&gt;
 
 &lt;p&gt;&lt;asciinema-player src=&#34;https://lucassec.github.io/videos/demo_0618.json&#34;&gt;&lt;/asciinema-player&gt;
-&lt;script src=&#34;https://lucassec.github.io/js/asciinema-player.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-</description>
+&lt;script src=&#34;https://lucassec.github.io/js/asciinema-player.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;</description>
       
     </item>
     
