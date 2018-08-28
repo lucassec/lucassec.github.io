@@ -435,35 +435,6 @@ $ wget https://github.com/asciinema/asciinema-player/releases/download/v2.6.1/as
     </item>
     
     <item>
-      <title>多功能系统维护盘制作及使用</title>
-      <link>https://lucassec.github.io/post/multi-boot-for-recovery/</link>
-      <pubDate>Fri, 11 May 2018 10:45:48 -0400</pubDate>
-      
-      <guid>https://lucassec.github.io/post/multi-boot-for-recovery/</guid>
-      
-        <description>&lt;p&gt;文章开头我总想扯几句，现在PC越来越普及，但是呢，系统面临的威胁也越来越多。比如，病毒侵袭，软件之间的硬件资源竞争及驱动异常等都会导致系统突然崩溃了而无法再次进入系统，通常小伙伴们在这个时候选择该修复引导的就修复引导，该重装的就重装，但这都得需要一个引导盘，临时遇上就去制作很麻烦，那么要是咱们身边的U盘既能用作维护盘又可用作数据盘多好，那好，小编这次就献丑帮大家一个一劳永逸的办法。
-&lt;/p&gt;
-
-&lt;h2 id=&#34;此维护盘的优势&#34;&gt;此维护盘的优势&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;支持传统BIOS和UEFI启动&lt;/li&gt;
-&lt;li&gt;免去每次制作格式化U盘的操作&lt;/li&gt;
-&lt;li&gt;支持ISO从内存启动&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;启动方式&#34;&gt;启动方式&lt;/h2&gt;
-
-&lt;p&gt;传统BIOS启动是采用的winly作为第一引导，在之上间接引导电脑店或者其他操作系统iso镜像，免去了小伙伴安装不同操作系统就要格盘一次，不但迁移数据麻烦还对U盘造成“损伤”。
-UEFI启动更好说，咱们用的盘得格式化为fat32格式，就是为了将就UEFI启动的，直接将需要安装的系统拷贝至U盘根目录，安装完后将这部分文件删除，没毛病！～&lt;/p&gt;
-
-&lt;h2 id=&#34;引导其他技巧&#34;&gt;引导其他技巧&lt;/h2&gt;
-
-&lt;p&gt;基于传统BIOS引导GPT分区上的系统，下次有空，小编再和小伙伴们扯。。。&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
       <title>将基于hugo的静态博客部署至Github Pages</title>
       <link>https://lucassec.github.io/post/set-up-hugo-with-github-pages/</link>
       <pubDate>Tue, 01 May 2018 09:29:57 -0400</pubDate>
@@ -622,6 +593,71 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;h2 id=&#34;写在最后的话&#34;&gt;写在最后的话&lt;/h2&gt;
 
 &lt;p&gt;祝大家从此开始美美得写博客，有感而发，不至于空洞无一物。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>nmap通过代理进行端口扫描</title>
+      <link>https://lucassec.github.io/post/nmap_scan_through_proxy/</link>
+      <pubDate>Sun, 02 Apr 2017 08:33:29 +0800</pubDate>
+      
+      <guid>https://lucassec.github.io/post/nmap_scan_through_proxy/</guid>
+      
+        <description>&lt;p&gt;在渗透测试过程中，当你有幸得到一个入口，需要对其内部进一步探测，比如端口扫描，有人会在入口安装个nmap或者masscan之类的知名软体，有人会自己实现一个简易的端口多线程扫描程式，而还有人更乐意借助入口暂时开放一个代理端口，不仅完成端口扫描，也为后续渗透banner获取等提供便利。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;以在Kali环境为例，在proxychains中配置好相应代理之后，执行如下指令。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ proxychains nmap -n -Pn -sT -v target_ipaddress_or_cidr&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;-n：不对IP进行域名反向解析
+-Pn：不检测主机存活
+-sT：使用TCP扫描
+-v：提高输出信息的详细度&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>多功能系统维护盘制作及使用</title>
+      <link>https://lucassec.github.io/post/multi-boot-for-recovery/</link>
+      <pubDate>Wed, 11 May 2016 10:45:48 -0400</pubDate>
+      
+      <guid>https://lucassec.github.io/post/multi-boot-for-recovery/</guid>
+      
+        <description>&lt;p&gt;文章开头我总想扯几句，现在PC越来越普及，但是呢，系统面临的威胁也越来越多。比如，病毒侵袭，软件之间的硬件资源竞争及驱动异常等都会导致系统突然崩溃了而无法再次进入系统，通常小伙伴们在这个时候选择该修复引导的就修复引导，该重装的就重装，但这都得需要一个引导盘，临时遇上就去制作很麻烦，那么要是咱们身边的U盘既能用作维护盘又可用作数据盘多好，那好，小编这次就献丑帮大家一个一劳永逸的办法。
+&lt;/p&gt;
+
+&lt;h2 id=&#34;此维护盘的优势&#34;&gt;此维护盘的优势&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;支持传统BIOS和UEFI启动&lt;/li&gt;
+&lt;li&gt;免去每次制作格式化U盘的操作&lt;/li&gt;
+&lt;li&gt;支持ISO从内存启动&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;启动方式&#34;&gt;启动方式&lt;/h2&gt;
+
+&lt;p&gt;传统BIOS启动是采用的winly作为第一引导，在之上间接引导电脑店或者其他操作系统iso镜像，免去了小伙伴安装不同操作系统就要格盘一次，不但迁移数据麻烦还对U盘造成“损伤”。
+UEFI启动更好说，咱们用的盘得格式化为fat32格式，就是为了将就UEFI启动的，直接将需要安装的系统拷贝至U盘根目录，安装完后将这部分文件删除，没毛病！～&lt;/p&gt;
+
+&lt;h2 id=&#34;引导其他技巧&#34;&gt;引导其他技巧&lt;/h2&gt;
+
+&lt;p&gt;基于传统BIOS引导GPT分区上的系统，下次有空，小编再和小伙伴们扯。。。&lt;/p&gt;</description>
       
     </item>
     
